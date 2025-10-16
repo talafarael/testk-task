@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: node
+    restart: always
+    networks:
+      - default-network
+    working_dir:
+      /app
+    volumes:
+      - './:/app'
+      - /app/node_modules
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7.0.3
+    container_name: mongodb_prod
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+    networks:
+      - default-network
+    volumes:
+      - ./mongodb:/data/db
+    ports:
+      - 27017:27017
+
+networks:
+  default-network:
+    driver: bridge

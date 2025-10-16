@@ -1,0 +1,8 @@
+backend/node_modules
+backend/dist
+backend/mongodb
+
+frontend/node_modules 
+
+
+

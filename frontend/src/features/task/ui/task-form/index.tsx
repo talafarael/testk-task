@@ -9,12 +9,14 @@ export interface TaskFormProps {
   loading?: boolean;
   error?: string;
   handlerSubmit: (data: CreateTaskRequest) => void;
+  title?: string;
 }
 export const TaskForm = ({
   data,
   handlerSubmit,
   loading,
   error,
+  title,
 }: TaskFormProps) => {
   const form = useForm<CreateTaskRequest>({
     defaultValues: data,
@@ -25,6 +27,7 @@ export const TaskForm = ({
         className="task-form"
         onSubmit={form.handleSubmit((data) => handlerSubmit(data))}
       >
+        <h1 className="title-task-form">{title}</h1>
         {taskFormData.map((elem) => (
           <Input<CreateTaskRequest>
             key={elem.name}

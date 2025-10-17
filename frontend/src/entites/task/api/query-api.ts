@@ -1,5 +1,5 @@
 import type { AxiosResponse } from "axios";
-import { axiosQuery } from "../../../shared/api/inde";
+import { axiosQuery } from "../../../shared/api/index";
 import type { Task } from "../model/task";
 
 export const getTasksApi = async (): Promise<AxiosResponse> => {

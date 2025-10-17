@@ -19,6 +19,7 @@ export const CreateTask = () => {
   return (
     <div>
       <TaskForm
+        title="Create task"
         loading={loading}
         error={error}
         data={createTaskMockData}

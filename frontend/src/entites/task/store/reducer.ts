@@ -18,6 +18,11 @@ import {
   UPDATE_TASK_FAILURE,
 } from "../../../features/task/model/actions/update-action";
 import type { Task } from "../model/task";
+import {
+  DELETE_TASK_FAILURE,
+  DELETE_TASK_FETCH,
+  DELETE_TASK_SUCCESS,
+} from "../../../features/task/model/actions/delete-action";
 
 interface TaskState {
   task: Task[];
@@ -28,13 +33,16 @@ interface TaskState {
 type Action =
   | { type: typeof GET_TASKS_SUCCESS; payload: Task[] }
   | { type: typeof GET_TASKS_FAILURE; payload: string }
-  | { type: "GET_TASKS_FETCH" }
+  | { type: typeof GET_TASKS_FETCH }
   | { type: typeof CREATE_TASK_FETCH; payload: CreateTaskRequest }
   | { type: typeof CREATE_TASK_SUCCESS; payload: Task }
   | { type: typeof CREATE_TASK_FAILURE; payload: string }
   | { type: typeof UPDATE_TASK_FETCH; payload: UpdateTaskRequest }
   | { type: typeof UPDATE_TASK_SUCCESS; payload: Task }
-  | { type: typeof UPDATE_TASK_FAILURE; payload: string };
+  | { type: typeof UPDATE_TASK_FAILURE; payload: string }
+  | { type: typeof DELETE_TASK_FETCH; payload: string }
+  | { type: typeof DELETE_TASK_SUCCESS; payload: string }
+  | { type: typeof DELETE_TASK_FAILURE; payload: string };
 
 const initialState: TaskState = {
   task: [],
@@ -47,6 +55,7 @@ const taskReducer = (state = initialState, action: Action): TaskState => {
     case GET_TASKS_FETCH:
     case CREATE_TASK_FETCH:
     case UPDATE_TASK_FETCH:
+    case DELETE_TASK_FETCH:
       return { ...state, loading: true, error: undefined };
 
     case GET_TASKS_SUCCESS:
@@ -77,6 +86,17 @@ const taskReducer = (state = initialState, action: Action): TaskState => {
         loading: false,
       };
     case UPDATE_TASK_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
+    case DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        task: state.task.filter(
+          (t) => t._id.toString() !== action.payload.toString(),
+        ),
+        loading: false,
+      };
+    case DELETE_TASK_FAILURE:
       return { ...state, loading: false, error: action.payload };
 
     default:

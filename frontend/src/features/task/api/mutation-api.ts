@@ -1,5 +1,5 @@
 import type { AxiosResponse } from "axios";
-import { axiosMutation } from "../../../shared/api/inde";
+import { axiosMutation } from "../../../shared/api/index";
 import type { CreateTaskRequest, UpdateTaskRequest } from "./type";
 
 export const createTaskApi = async (
@@ -10,7 +10,7 @@ export const createTaskApi = async (
     data,
     method: "post",
   });
-  return res.data;
+  return res.data.data;
 };
 
 export const updateTaskApi = async (
@@ -21,7 +21,7 @@ export const updateTaskApi = async (
     data,
     method: "put",
   });
-  return res.data;
+  return res.data.data;
 };
 
 export const deleteTaskApi = async (id: string): Promise<AxiosResponse> => {
@@ -29,5 +29,5 @@ export const deleteTaskApi = async (id: string): Promise<AxiosResponse> => {
     path: `tasks/${id}`,
     method: "delete",
   });
-  return res.data;
+  return res.data.data;
 };

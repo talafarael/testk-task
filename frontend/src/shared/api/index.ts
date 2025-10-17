@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from "axios";
-import { config } from "../config";
+import { config } from "../constant/config";
 
 const API_PORT = `${config.port}/api/`;
 

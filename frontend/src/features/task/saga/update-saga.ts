@@ -7,11 +7,14 @@ import {
   type UpdateTaskFetchAction,
   UPDATE_TASK_FETCH,
 } from "../model/actions/update-action";
+import { navigate } from "../../../shared/lib/navigation";
+import { routes } from "../../../shared/constant/routers";
 
 function* workUpdateTaskFetch(action: UpdateTaskFetchAction): Generator {
   try {
     const newTask: Task = yield call(updateTaskApi, action.payload);
     yield put(updateTaskSuccess(newTask));
+    yield call(navigate, routes.home);
   } catch (error: unknown) {
     if (error instanceof Error) {
       yield put(updateTaskFailure(error.message));

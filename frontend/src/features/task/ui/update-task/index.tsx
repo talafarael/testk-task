@@ -7,14 +7,12 @@ import { TaskForm } from "../task-form";
 import type { AppDispatch } from "../../../../shared/store";
 import { updateTaskFetch } from "../../model/actions/update-action";
 import type { RootState } from "../../../../shared/model/reducer/root-reducer";
-import { useNavigate } from "react-router-dom";
 
 export const UpdateTask = () => {
   const { task, loading, error } = useGetTask();
   const { loading: loadTask, error: errorTask } = useSelector(
     (state: RootState) => state.taskReducer,
   );
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const handlerSubmit = async (data: CreateTaskRequest) => {
     if (!task) return;
@@ -32,6 +30,7 @@ export const UpdateTask = () => {
     <div>
       {task && (
         <TaskForm
+          title="Update task"
           loading={loadTask}
           error={errorTask}
           data={task}

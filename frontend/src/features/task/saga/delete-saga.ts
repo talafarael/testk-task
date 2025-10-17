@@ -20,6 +20,6 @@ function* workDeleteTaskFetch(action: DeleteTaskFetchAction): Generator {
   }
 }
 
-export function* createTaskSaga() {
+export function* deleteTaskSaga() {
   yield takeEvery(DELETE_TASK_FETCH, workDeleteTaskFetch);
 }

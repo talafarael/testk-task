@@ -5,6 +5,8 @@
   margin: 10px 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: background 0.2s ease;
+  width: 150px;
+  height: 100px;
 }
 
 .item-task-container:hover {
@@ -38,4 +40,8 @@
 .item-task-button :hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
+}
+.item-task-header {
+  display: flex;
+  justify-content: space-between;
 }

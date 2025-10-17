@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+.children-container {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}

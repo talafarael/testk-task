@@ -5,7 +5,7 @@ import {
   Controller,
   type Control,
 } from "react-hook-form";
-import type { Validation } from "../type/validation";
+import type { Validation } from "../../type/validation";
 
 export type FormFieldProps<T extends FieldValues> = {
   type: string;

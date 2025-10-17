@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import { MainPage } from "../../pages/MainPage";
 import { Layout } from "../ui/Layout";
+import { CreateTask } from "../../features/task/ui/create-task";
+import { MainPage } from "../../pages/main-page";
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <MainPage />,
+      },
+      {
+        path: "/create",
+        element: <CreateTask />,
       },
     ],
   },

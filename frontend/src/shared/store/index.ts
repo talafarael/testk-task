@@ -15,6 +15,7 @@ export const store = configureStore({
 });
 sagaMiddleware.run(taskSaga);
 sagaMiddleware.run(createTaskSaga);
+export type AppDispatch = typeof store.dispatch;
 
 store.subscribe(() => {
   saveState(store.getState());

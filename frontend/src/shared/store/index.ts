@@ -1,9 +1,10 @@
 import { rootReducer } from "../model/reducer/root-reducer";
 import { configureStore } from "@reduxjs/toolkit";
-import taskSaga from "../../entites/task/saga/taskSaga";
 import createSagaMiddleware from "redux-saga";
 import { loadState, saveState } from "../../entites/task/store/local-store";
 import { createTaskSaga } from "../../features/task/saga/create-saga";
+import getTasksSaga from "../../entites/task/saga/get-tasks-saga";
+import { updateTaskSaga } from "../../features/task/saga/update-saga";
 
 export const sagaMiddleware = createSagaMiddleware();
 const persistedState = loadState();
@@ -13,8 +14,11 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: true }).concat(sagaMiddleware),
 });
-sagaMiddleware.run(taskSaga);
+
+sagaMiddleware.run(getTasksSaga);
 sagaMiddleware.run(createTaskSaga);
+sagaMiddleware.run(updateTaskSaga);
+
 export type AppDispatch = typeof store.dispatch;
 
 store.subscribe(() => {

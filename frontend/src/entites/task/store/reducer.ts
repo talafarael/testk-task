@@ -1,4 +1,7 @@
-import type { CreateTaskRequest } from "../../../features/task/api/type";
+import type {
+  CreateTaskRequest,
+  UpdateTaskRequest,
+} from "../../../features/task/api/type";
 import {
   CREATE_TASK_FAILURE,
   CREATE_TASK_FETCH,
@@ -6,8 +9,14 @@ import {
 } from "../../../features/task/model/actions/create-action";
 import {
   GET_TASKS_FAILURE,
+  GET_TASKS_FETCH,
   GET_TASKS_SUCCESS,
-} from "../model/actions/get-action";
+} from "../model/actions/get-tasks-action";
+import {
+  UPDATE_TASK_FETCH,
+  UPDATE_TASK_SUCCESS,
+  UPDATE_TASK_FAILURE,
+} from "../../../features/task/model/actions/update-action";
 import type { Task } from "../model/task";
 
 interface TaskState {
@@ -22,17 +31,24 @@ type Action =
   | { type: "GET_TASKS_FETCH" }
   | { type: typeof CREATE_TASK_FETCH; payload: CreateTaskRequest }
   | { type: typeof CREATE_TASK_SUCCESS; payload: Task }
-  | { type: typeof CREATE_TASK_FAILURE; payload: string };
-const initialState = {
+  | { type: typeof CREATE_TASK_FAILURE; payload: string }
+  | { type: typeof UPDATE_TASK_FETCH; payload: UpdateTaskRequest }
+  | { type: typeof UPDATE_TASK_SUCCESS; payload: Task }
+  | { type: typeof UPDATE_TASK_FAILURE; payload: string };
+
+const initialState: TaskState = {
   task: [],
   error: undefined,
   loading: false,
 };
+
 const taskReducer = (state = initialState, action: Action): TaskState => {
   switch (action.type) {
-    case "GET_TASKS_FETCH":
+    case GET_TASKS_FETCH:
     case CREATE_TASK_FETCH:
+    case UPDATE_TASK_FETCH:
       return { ...state, loading: true, error: undefined };
+
     case GET_TASKS_SUCCESS:
       return {
         ...state,
@@ -42,6 +58,7 @@ const taskReducer = (state = initialState, action: Action): TaskState => {
       };
     case GET_TASKS_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
     case CREATE_TASK_SUCCESS:
       return {
         ...state,
@@ -50,6 +67,18 @@ const taskReducer = (state = initialState, action: Action): TaskState => {
       };
     case CREATE_TASK_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
+    case UPDATE_TASK_SUCCESS:
+      return {
+        ...state,
+        task: state.task.map((t) =>
+          t._id === action.payload._id ? action.payload : t,
+        ),
+        loading: false,
+      };
+    case UPDATE_TASK_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }

@@ -27,6 +27,7 @@ export const TaskForm = ({
       >
         {taskFormData.map((elem) => (
           <Input<CreateTaskRequest>
+            key={elem.name}
             type="input"
             name={elem.name}
             error={form.formState.errors[elem.name]}

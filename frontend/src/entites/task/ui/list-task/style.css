@@ -1,0 +1,16 @@
+.container-task-list {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  height: max-content;
+  align-items: start;
+  gap: 12px;
+  margin-top: 25px;
+  justify-content: center;
+}
+.container-task {
+  min-height: 85vh;
+}
+.title-task-list {
+  margin-bottom: 0px;
+}

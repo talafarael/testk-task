@@ -1,0 +1,14 @@
+.input {
+  height: 35px;
+  width: 250px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+}
+.container-input {
+  height: 70px;
+}
+.error-input {
+  color: #e74c3c;
+  margin-top: 5px;
+}

@@ -6,7 +6,7 @@ import {
   type Control,
 } from "react-hook-form";
 import type { Validation } from "../../type/validation";
-
+import "./style.css";
 export type FormFieldProps<T extends FieldValues> = {
   type: string;
   placeholder: string;
@@ -28,21 +28,23 @@ export const Input = <T extends FieldValues>({
   validation,
 }: FormFieldProps<T>) => {
   return (
-    <div>
+    <div className="container-input">
       <Controller
         name={name}
         control={control}
         rules={validation}
         render={({ field }) => (
           <input
-            className={`${style}`}
+            className={`input ${style}`}
             type={type}
             {...field}
             placeholder={placeholder}
           />
         )}
       />
-      {error?.message && <div className={styleError}>{error.message}</div>}
+      {error?.message && (
+        <h4 className={`error-input ${styleError}`}>{error.message}</h4>
+      )}
     </div>
   );
 };

@@ -1,0 +1,41 @@
+.item-task-container {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s ease;
+}
+
+.item-task-container:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.item-task-title {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.item-task-description {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.item-task-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  margin-right: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.item-task-button :hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}

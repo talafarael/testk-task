@@ -7,6 +7,7 @@ class TaskService {
   async createTask(req: Request, res: Response) {
     try {
       const body: ICreateTask = req.body;
+      console.log(body);
       const newTask = new TaskModel({
         title: body.title,
         description: body.description,
@@ -19,9 +20,13 @@ class TaskService {
       return handlerError(err, res);
     }
   }
-  async getTasks(_: Request, res: Response) {
+  async getTasks(req: Request, res: Response) {
     try {
-      const tasks = await TaskModel.find();
+      const { search } = req.query;
+      const query = search
+        ? { title: { $regex: search as string, $options: "i" } }
+        : {};
+      const tasks = await TaskModel.find(query);
       res.status(200).json({ data: tasks });
     } catch (err: unknown) {
       return handlerError(err, res);
@@ -71,10 +76,7 @@ class TaskService {
       if (!deletedTask) {
         throw new ApiError(404, "Task not found");
       }
-
-      res
-        .status(200)
-        .json({ message: "Task deleted successfully", data: deletedTask });
+      res.status(200).json({ data: deletedTask._id });
     } catch (err) {
       console.error("delete-task" + err);
       return handlerError(err, res);

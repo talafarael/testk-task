@@ -17,8 +17,12 @@ export const useGetTask = () => {
         const res = await getTaskApi(id);
         setTask(res);
         setLoading(false);
-      } catch (e) {
-        setError(e.message || "Error fetching task");
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError("Error fetching task");
+        }
         setLoading(false);
       }
     })();

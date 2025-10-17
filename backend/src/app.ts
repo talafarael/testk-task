@@ -1,10 +1,8 @@
 import express from "express";
 import cors from "cors";
-import { config } from "node:process";
 import env from "./config/env";
 import routes from "./routes";
 import mongoose from "mongoose";
-// import { errorHandler } from "./middlewares/error.middleware";
 
 export const app = express();
 try {

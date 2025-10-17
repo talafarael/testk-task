@@ -1,5 +1,5 @@
-import { ListTask } from "../../entites/task/ui/list-task";
+import { Task } from "../../entites/task/ui/task";
 
 export const MainPage = () => {
-  return <ListTask />;
+  return <Task />;
 };

@@ -1,0 +1,10 @@
+.container-task {
+  min-height: 85vh;
+}
+.title-task-list {
+  margin-bottom: 0px;
+}
+.container-header-task {
+  display: flex;
+  justify-content: space-between;
+}

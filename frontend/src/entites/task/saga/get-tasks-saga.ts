@@ -3,13 +3,16 @@ import {
   GET_TASKS_FETCH,
   getTaskFailure,
   getTasksSuccess,
+  type GetTaskFetchAction,
 } from "../model/actions/get-tasks-action";
 import type { Task } from "../model/task";
 import { getTasksApi } from "../api/query-api";
 
-function* workGetTasksFetch(): Generator<unknown, void, Task[]> {
+function* workGetTasksFetch(
+  action: GetTaskFetchAction,
+): Generator<unknown, void, Task[]> {
   try {
-    const tasks: Task[] = yield call(getTasksApi);
+    const tasks: Task[] = yield call(getTasksApi, action.payload);
     yield put(getTasksSuccess(tasks));
   } catch (error: unknown) {
     if (error instanceof Error) {

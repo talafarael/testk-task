@@ -12,18 +12,15 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="header-left">
-          <h1 className="header-logo" onClick={() => handlerNav(routes.home)}>
-            Task Manager
-          </h1>
-        </div>
-        <div className="header-right">
-          <Button
-            text="Create Task"
-            onClick={() => handlerNav(routes.create)}
-            className="create-button"
-          />
-        </div>
+        <h1 className="header-title" onClick={() => handlerNav(routes.home)}>
+          Task Manager
+        </h1>
+
+        <Button
+          text="Create Task"
+          onClick={() => handlerNav(routes.create)}
+          className="create-button"
+        />
       </div>
     </header>
   );

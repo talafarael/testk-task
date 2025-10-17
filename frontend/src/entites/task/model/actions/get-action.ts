@@ -1,25 +1,25 @@
-import type { Task } from "./task";
+import type { Task } from "../task";
 
-export const GET_TASK_FETCH = "GET_TASK_FETCH";
-export const GET_TASK_SUCCESS = "GET_TASK_SUCCESS";
-export const GET_TASK_FAILURE = "GET_TASK_FAILURE";
+export const GET_TASKS_FETCH = "GET_TASKS_FETCH";
+export const GET_TASKS_SUCCESS = "GET_TASKS_SUCCESS";
+export const GET_TASKS_FAILURE = "GET_TASKS_FAILURE";
 export interface GetTaskSuccessAction {
-  type: typeof GET_TASK_SUCCESS;
+  type: typeof GET_TASKS_SUCCESS;
   payload: Task[];
 }
 
 export interface GetTaskFailureAction {
-  type: typeof GET_TASK_FAILURE;
+  type: typeof GET_TASKS_FAILURE;
   payload: string;
 }
 export const getTaskFetch = () => ({
-  type: GET_TASK_FETCH,
+  type: GET_TASKS_FETCH,
 });
 export const getTasksSuccess = (tasks: Task[]): GetTaskSuccessAction => ({
-  type: GET_TASK_SUCCESS,
+  type: GET_TASKS_SUCCESS,
   payload: tasks,
 });
 export const getTaskFailure = (error: string): GetTaskFailureAction => ({
-  type: GET_TASK_FAILURE,
+  type: GET_TASKS_FAILURE,
   payload: error,
 });

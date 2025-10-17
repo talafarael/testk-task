@@ -25,8 +25,12 @@ export const axiosMutation = async <T>({
   }
   return await axios[method](path, data);
 };
-
-export const axiosQuery = async (path: string): Promise<AxiosResponse> => {
+interface AxiosQueryParams {
+  path: string;
+}
+export const axiosQuery = async ({
+  path,
+}: AxiosQueryParams): Promise<AxiosResponse> => {
   const axios = createApi();
   return await axios.get(path);
 };
